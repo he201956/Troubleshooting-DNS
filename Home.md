@@ -1,4 +1,4 @@
-# Consignes
+## Consignes
 
 Ce template est destiné à vous aider à la rédaction d'un rapport de troubleshooting.  La structure proposée vise à mettre en avant le **raisonnement** réalisé, et pas tant le résultat obtenu.  
 
