@@ -1,8 +1,17 @@
-**Consignes**  _Ce template est destiné à vous aider à la rédaction d'un rapport de troubleshooting.  La structure proposée vise à mettre en avant le **raisonnement** réalisé, et pas tant le résultat obtenu.  En effet, l'important, dans l'apprentissage du troubleshooting, est d'appliquer une procédure systématique d'investigation reposant sur la collecte d'indices et sur la mise en avant des liens entre ces indices pour arriver à l'identification du problème.  Un bug n'est pas résolu par la disparition du problème, mais bien par la compréhension profonde de ce qui s'est passé afin d'appliquer les corrections adéquates.  _
+# Consignes
 
-# Bug Report
+Ce template est destiné à vous aider à la rédaction d'un rapport de troubleshooting.  La structure proposée vise à mettre en avant le **raisonnement** réalisé, et pas tant le résultat obtenu.  
+
+En effet, l'important, dans l'apprentissage du troubleshooting, est d'appliquer une procédure systématique d'investigation reposant sur la collecte d'indices et sur la mise en avant des liens entre ces indices pour arriver à l'identification du problème.  Un bug n'est pas résolu par la disparition du problème, mais bien par la compréhension profonde de ce qui s'est passé afin d'appliquer les corrections adéquates.
+
+
+***
+
+
+# 1. Bug Report
 
 Un bug report permet à l'utilisateur de documenter un problème afin que ceux qui s'occuperont de le résoudre disposent de suffisamment d'informations pour pouvoir reproduire le bug dans leur propre environnement de test.  
+
 
 Il doit donc contenir les informations suivantes : 
 
@@ -10,7 +19,7 @@ Il doit donc contenir les informations suivantes :
 - Les circonstances dans lesquelles le bug s'est produit (quelles étapes pour arriver au bug?  Quels inputs?)
 - Le bug observé : description du résultat obtenu par rapport au résultat normalement attendu.  
  
-# Collecte des symptômes
+# 2. Collecte des symptômes
 
 Après la description du bug vient la phase d'enquête.  Vous devez récolter un maximum d'indices pour faire la lumière sur le problème rencontré.  Pour cela, à vous d'utiliser les bons outils ! 
 
@@ -38,7 +47,7 @@ Selon les cas, vous pourriez aussi utiliser :
 - nmap, ... 
 Note : Au stade actuel, vous **ne devez pas** encore aller **examiner les fichiers de configuration**. Ce sont vos déductions qui vous indiqueront où regarder dans les configs.  
 
-# Identification et description du problème 
+# 3. Identification et description du problème 
 
 Sur base de vos indices, vous devriez à présent arriver à comprendre le problème.  
 
@@ -54,10 +63,10 @@ Il y a bien un lien clair entre l'indice observé et l'hypothèse.
 
 2. Votre hypothèse devrait vous indiquer une erreur probable dans les configurations.  Allez à présent vérifier dans les fichiers de configuration si elle est correcte.  
 
-# Proposition de solution 
+# 4. Proposition de solution 
 Une fois le problème identifié, il faut le corriger.  
 
 - Expliquez les changements effectués pour rétablir l'état attendu du système. 
 - Validez votre résolution :
-* donnez les commandes à utiliser pour prouver que le bug est résolu. 
-* Montrer une preuve (screenshot) que c'est bien le cas
+  * donnez les commandes à utiliser pour prouver que le bug est résolu. 
+  * montrer une preuve (screenshot) que c'est bien le cas
