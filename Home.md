@@ -8,12 +8,13 @@ En effet, l'important, dans l'apprentissage du troubleshooting, est d'appliquer 
 
 Pour utiliser ce template, vous pouvez soit "forker" le repository, soit copier/coller le contenu de cette page.  
 ***
+# < Titre du travail >
 
 - Auteur(s) :  
 - Date : 
 
 
-# 1. Bug Report
+## 1. Bug Report
 
 Un bug report permet à l'utilisateur de documenter un problème afin que ceux qui s'occuperont de le résoudre disposent de suffisamment d'informations pour pouvoir reproduire le bug dans leur propre environnement de test.  
 
@@ -24,7 +25,7 @@ Il doit donc contenir les informations suivantes :
 - Les circonstances dans lesquelles le bug s'est produit (quelles étapes pour arriver au bug?  Quels inputs?)
 - Le bug observé : description du résultat obtenu par rapport au résultat normalement attendu.  
  
-# 2. Collecte des symptômes
+## 2. Collecte des symptômes
 
 Après la description du bug vient la phase d'enquête.  Vous devez récolter un maximum d'indices pour faire la lumière sur le problème rencontré.  Pour cela, à vous d'utiliser les bons outils ! 
 
@@ -36,7 +37,7 @@ Dans ce rapport, pour chaque outil utilisé :
 - Donnez l'_output obtenu_ (screenshot ou output textuel selon les circonstances)
 - Indiquez ce que vous déduisez de cet output (comparaison output attendu/output obtenu + analyse) 
 
-## Liste des outils :
+### Liste des outils :
 
 Dans le cadre de ce cours, vous devez autant que possible utiliser systématiquement :
 - Wireshark,
@@ -52,7 +53,7 @@ Selon les cas, vous pourriez aussi utiliser :
 - nmap, ... 
 Note : Au stade actuel, vous **ne devez pas** encore aller **examiner les fichiers de configuration**. Ce sont vos déductions qui vous indiqueront où regarder dans les configs.  
 
-# 3. Identification et description du problème 
+## 3. Identification et description du problème 
 
 Sur base de vos indices, vous devriez à présent arriver à comprendre le problème.  
 
@@ -68,7 +69,7 @@ Il y a bien un lien clair entre l'indice observé et l'hypothèse.
 
 2. Votre hypothèse devrait vous indiquer une erreur probable dans les configurations.  Allez à présent vérifier dans les fichiers de configuration si elle est correcte.  
 
-# 4. Proposition de solution 
+## 4. Proposition de solution 
 Une fois le problème identifié, il faut le corriger.  
 
 - Expliquez les changements effectués pour rétablir l'état attendu du système. 
