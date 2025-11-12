@@ -2,6 +2,7 @@
 
 - Auteur(s) :  V. Van den Schrieck
 - Date : 12 novembre 2025
+- Usage des IAG : Aucun. 
 
 
 ## 1. Bug Report
