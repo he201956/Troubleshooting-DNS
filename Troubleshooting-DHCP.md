@@ -41,10 +41,11 @@ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
 rtt min/avg/max/mdev = 18.282/24.620/30.958/6.338 ms
 ```
 
+**Conclusion : les postes client disposent bien d'une connectivité IP.**
 
 ### Couche Transport : 
 
-Comme on sait que le problème se situe au niveau du DHCP, on va s'assurer que le serveur DHCP répond bien au niveau de la couche transport.  Pour cela : 
+Comme nous soupçonnons que le problème se situe au niveau du DHCP, on va s'assurer que le serveur DHCP répond bien au niveau de la couche transport.  Pour cela : 
 - On vérifie sur le serveur si le logiciel `dhcpd` est bien à l'écoute sur le port UDP 67, avec la commande `netstat` : 
 
 ```
@@ -64,6 +65,8 @@ Les échanges DHCP sont visibles, ce qui indique que :
 - Le serveur DHCP est accessible en UDP sur le port 67 (nous le savions déjà via le netstat)
 - Puisque un échange DORA complet est effectué, la communication transport fonctionne bien.  
 
+**Conclusion : la couche transport semble fonctionner comme attendu.**
+
 ### Couche applicative
 
 Puisque les couches 3 et 4 semblent fonctionnelles, le problème est probablement au niveau applicatif.  Puisque la connectivité IP fonctionne, l'échec du ping `www.google.com` doit avoir une autre cause.  Reprenons l'output de cette commande : 
@@ -71,6 +74,7 @@ Puisque les couches 3 et 4 semblent fonctionnelles, le problème est probablemen
 root@direction:/# ping www.google.com
 ping: www.google.com: Temporary failure in name resolution
 ```
+#### Vérification du fonctionnement du résolveur DNS
 Le message d'erreur parle de panne dans la résolution de noms.  Nous pouvons soupçonner qu'il y a un problème au niveau du DNS.  Dans ce labo, le DNS est assuré par le résolveur. Pour s'assurer qu'il fonctionne, nous pouvons le tester en faisant une requête via dig directement vers lui, depuis le client :
 
 ```
@@ -97,7 +101,9 @@ www.google.com.		300	IN	A	142.251.39.132
 ;; WHEN: Wed Nov 12 20:20:30 UTC 2025
 ;; MSG SIZE  rcvd: 87
 ```
-Le résolveur a bien répondu en donnant l'adresse IP demandée.  Il semble donc fonctionner correctement.  
+**Conclusion : Le résolveur a bien répondu en donnant l'adresse IP demandée.  Il semble donc fonctionner correctement.**
+
+#### Vérification de la configuration du client
 
 Pour comprendre pourquoi notre poste client ne sait pas obtenir de réponse DNS alors que le résolveur est pourtant fonctionnel, nous pouvons observer s'il y a des requêtes DNS qui sortent de ce poste client.  Une capture sur le lien entre le switch et le poste de direction nous donne le résultat suivant, après application d'un filtre sur le trafic DNS : 
 <img width="1173" height="274" alt="Capture d’écran 2025-11-12 à 21 24 46" src="https://github.com/user-attachments/assets/0f94e72f-18e6-4d5d-9a29-4c57193f62c6" />
@@ -115,18 +121,23 @@ root@direction:/# cat /etc/resolv.conf
 search woodytoys.lab
 nameserver 192.168.0.1
 ```
-Le fichier contient bien l'adresse identifiée dans la trace Wireshark.  Cette adresse est normalement fournie par le serveur DHCP : c'est probablement lui qui est à l'origine de l'erreur.  
+Le fichier contient bien l'adresse identifiée dans la trace Wireshark.  
 
-Pour s'en assurer, ré-examinons la trace Wireshark avec l'échange DHCP DORA, et plus particulièrement le datagramme contenant le DHCP ACK : c'est lui qui contient les informations optionnelles telles que l'IP du résolveur DHCP.  
+**Conclusion : Le client est configuré avec une mauvaise adresse pour le résolveur. Cette adresse est normalement fournie par le serveur DHCP : c'est probablement lui qui est à l'origine de l'erreur.**
+
+#### Vérification des options envoyées par le serveur DHCP
+
+Pour vérifier les informations envoyées par le DHCP, ré-examinons la trace Wireshark avec l'échange DHCP DORA, et plus particulièrement le datagramme contenant le DHCP ACK : c'est lui qui contient les informations optionnelles telles que l'IP du résolveur DHCP.  
 
 <img width="608" height="527" alt="Capture d’écran 2025-11-12 à 21 31 14" src="https://github.com/user-attachments/assets/bfc9f1ee-77d3-4409-a7c3-b3ca7374913c" />
 On constate effectivement que le serveur DHCP a bien annoncé l'adresse IP 192.168.0.1, qui est sa propre IP et non celle du résolveur. 
 
+**Conclusion : Le serveur DHCP envoie une mauvaise IP pour le résolveur DNS.**
 
 
 ## 3. Identification et description du problème 
 
-Reprenons les étapes de l'analyse et leurs conclusions : 
+Faisons une synthèse des étapes de l'analyse et leurs conclusions : 
 - La connectivité réseau et le fonctionnement au niveau de la couche transport sont correct : le problème est à la couche applicative.  
 - L'output du ```ping www.google.com``` nous indique un problème de résolution de noms.  Or, nous avons vérifié que le résolveur fonctionne correctement
 - Puisque le résolveur fonctionne, nous avons regardé le client de plus près : une trace Wireshark nous a indiqué qu'il contacte le mauvais résolveur.  Or, l'IP du résolveur lui est fournie par le serveur DHCP
@@ -146,7 +157,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
         option domain-name-servers 192.168.0.1; #MAUVAISE ADRESSE IP ! 
 }
 ```
-La dernière ligne concerne l'IP du résolveur, et indique effectivement une adresse erronée.  
+La dernière ligne concerne l'IP du résolveur, et indique effectivement une adresse erronée.  L'origine du bug est donc identifiée. 
 
 
 ## 4. Proposition de solution 
@@ -154,7 +165,7 @@ La dernière ligne concerne l'IP du résolveur, et indique effectivement une adr
 
 Le problème peut se solutionner rapidement en remplaçant cette adresse par celle du résolveur (192.168.0.2) et en redémarrant le serveur.  
 
-Pour vérifier que le bug est bien solutionné, il suffit de reproduire le ping problématique : 
+Pour vérifier que le bug est bien corrigé, il suffit de reproduire le ping qui mettait le problème en évidence : 
 ```
 root@direction:/# ping www.google.com
 PING www.google.com (142.251.39.132) 56(84) bytes of data.
@@ -166,3 +177,4 @@ PING www.google.com (142.251.39.132) 56(84) bytes of data.
 rtt min/avg/max/mdev = 18.287/23.332/28.377/5.045 ms
 
 ``` 
+On peut cette fois constater que l'adresse `www.google.com` est bien résolue en IP, et le ping passe.  Les utilisateurs vont pouvoir à nouveau naviguer sur Internet.  
