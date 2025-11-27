@@ -2,9 +2,7 @@
 
 - Auteur(s) :  Victor Somers
 - Date : 27/11/2025
-- Usage des IAGs : 
-
-Note : Si vous utilisez une IAG pour autre chose que la correction orthographique ou la formulation (ex : rédaction, aide à la résolution de problème, ...), vous devez insérer à la fin de votre rapport un compte-rendu de cet usage (ex : prompts + réponses).  
+- Usage des IAGs : /  
 
 
 ## 1. Bug Report
