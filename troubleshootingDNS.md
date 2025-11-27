@@ -1,4 +1,3 @@
-[[ici|Troubleshooting DHCP]]
 # Troobleshooting DNS (situation 1)
 
 - Auteur(s) :  Victor Somers
