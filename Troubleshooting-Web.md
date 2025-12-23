@@ -1,21 +1,9 @@
-## Consignes
-
-Ce template est destiné à vous aider à la rédaction d'un rapport de troubleshooting.  La structure proposée vise à mettre en avant le **raisonnement** réalisé, et pas tant le résultat obtenu.  
-
-En effet, l'important, dans l'apprentissage du troubleshooting, est d'appliquer une procédure systématique d'investigation reposant sur la collecte d'indices et sur la mise en avant des liens entre ces indices pour arriver à l'identification du problème.  Un bug n'est pas résolu par la disparition du problème, mais bien par la compréhension profonde de ce qui s'est passé afin d'appliquer les corrections adéquates. Pour travailler spécifiquement cette démarche de recherche, nous vous recommandons fortement de **ne pas consulter les fichiers de configuration** avant d'avoir trouvé le bug.  Cela vous permettra de vous focaliser sur les outils qui vous permettront d'analyser et observer le système.  
-
-
-Pour utiliser ce template, vous pouvez soit "forker" le repository, soit copier/coller le contenu de cette page.  Retirez bien entendu les consignes et les textes explicatifs avant de vous lancer dans la rédaction de votre rapport. 
-
-Un exemple de rapport de troubleshooting est disponible [[ici|Troubleshooting DHCP]]
-***
 # < Titre du travail >
 
-- Auteur(s) :  
-- Date : 
-- Usage des IAGs : 
+- Auteur(s) :  Victor Somers
+- Date : 23/12/2025
+- Usage des IAGs : /
 
-Note : Si vous utilisez une IAG pour autre chose que la correction orthographique ou la formulation (ex : rédaction, aide à la résolution de problème, ...), vous devez insérer à la fin de votre rapport un compte-rendu de cet usage (ex : prompts + réponses).  
 
 
 ## 1. Bug Report
@@ -27,7 +15,19 @@ Il doit donc contenir les informations suivantes :
 
 - Description du système sur lequel le bug s'est produit (quel OS dans quelle version, quel logiciel dans quelle version, etc.). 
 - Les circonstances dans lesquelles le bug s'est produit (quelles étapes pour arriver au bug?  Quels inputs?)
-- Le bug observé : description du résultat obtenu par rapport au résultat normalement attendu.  
+- Le bug observé : description du résultat obtenu par rapport au résultat normalement attendu.
+
+- En démarrant le serveur www, je constate qu'il y a une erreur de configuration de apache2.
+- Il m'indique aussi que l'essais de démarrer le serveur www a échoué.
+- Il me conseil de consulter le fichier error log de apache pour avoir plus d'information su la panne.
+<img width="847" height="305" alt="Capture d&#39;écran 2025-12-23 185454" src="https://github.com/user-attachments/assets/8fc0f25e-59ea-45f8-a09c-7c1e1859dd18" />
+
+
+- Lorsque je fais un links http://blog.woodytoys.lab/ une erreur s'affiche et je n'arrive pas à accéder au site web principal.
+<img width="927" height="130" alt="Capture d&#39;écran 2025-12-23 192102" src="https://github.com/user-attachments/assets/af5ce847-1e79-44a9-ad5c-cd9baae6c4f8" />
+<img width="1084" height="508" alt="Capture d&#39;écran 2025-12-23 192112" src="https://github.com/user-attachments/assets/01381994-f8e1-46d4-b51e-3e8737e8e5cc" />
+
+
  
 ## 2. Collecte des symptômes
 
