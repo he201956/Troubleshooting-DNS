@@ -1,14 +1,3 @@
-## Consignes
-
-Ce template est destiné à vous aider à la rédaction d'un rapport de troubleshooting.  La structure proposée vise à mettre en avant le **raisonnement** réalisé, et pas tant le résultat obtenu.  
-
-En effet, l'important, dans l'apprentissage du troubleshooting, est d'appliquer une procédure systématique d'investigation reposant sur la collecte d'indices et sur la mise en avant des liens entre ces indices pour arriver à l'identification du problème.  Un bug n'est pas résolu par la disparition du problème, mais bien par la compréhension profonde de ce qui s'est passé afin d'appliquer les corrections adéquates. Pour travailler spécifiquement cette démarche de recherche, nous vous recommandons fortement de **ne pas consulter les fichiers de configuration** avant d'avoir trouvé le bug.  Cela vous permettra de vous focaliser sur les outils qui vous permettront d'analyser et observer le système.  
-
-
-Pour utiliser ce template, vous pouvez soit "forker" le repository, soit copier/coller le contenu de cette page.  Retirez bien entendu les consignes et les textes explicatifs avant de vous lancer dans la rédaction de votre rapport. 
-
-Un exemple de rapport de troubleshooting est disponible [[ici|Troubleshooting DHCP]]
-***
 # < Titre du travail >
 
 - Auteur(s) :  
