@@ -1,11 +1,8 @@
-# < Titre du travail >
+Trobleshooting-Web
 
-- Auteur(s) :  
-- Date : 
-- Usage des IAGs : 
-
-Note : Si vous utilisez une IAG pour autre chose que la correction orthographique ou la formulation (ex : rédaction, aide à la résolution de problème, ...), vous devez insérer à la fin de votre rapport un compte-rendu de cet usage (ex : prompts + réponses).  
-
+- Auteur(s) :  Victor Somers
+- Date : 24/12/2025
+- Usage des IAGs : /
 
 ## 1. Bug Report
 
