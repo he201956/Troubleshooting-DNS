@@ -36,6 +36,11 @@
 - Sur le serveur, je réalise un netstat et je constate aussi que le blog écoute sur le port 8000 et le www sur le port 80.
 <img width="1532" height="256" alt="Capture d&#39;écran 2025-12-24 125740" src="https://github.com/user-attachments/assets/feb73354-11cf-4c68-81ce-336572f40eb5" />
 
+- Sur la machine client 'directeur', je réalise un links http://blog.woodytoys.lab en précisant le port de destination (8000) et je constate que la requête me donne bien le contenu du blog.
+  <img width="1072" height="230" alt="Capture d&#39;écran 2025-12-27 131452" src="https://github.com/user-attachments/assets/925af482-d469-4083-9fd3-610895b95ae7" />
+<img width="1587" height="599" alt="Capture d&#39;écran 2025-12-27 131503" src="https://github.com/user-attachments/assets/fd75e8dd-e6de-496a-8617-594e94c8d161" />
+
+
 - Sur le serveur, je constate que malgré mes requêtes links vers blog.woodytoys.lab il n'y a rien dans les fichiers acces.log et error.log du blog. Mais je constate que toutes mes requêtes se retrouvent dans le fichiers access.log de wwww et rien dans error.log de www.
 <img width="1804" height="141" alt="Capture d&#39;écran 2025-12-24 130523" src="https://github.com/user-attachments/assets/f7920312-b5ec-4121-975d-39f1992b5870" />
 
